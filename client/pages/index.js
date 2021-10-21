@@ -1,16 +1,26 @@
-import Head from 'next/head';
-import Image from 'next/image';
+import { server } from '../config';
+import ProductList from "../components/ProductList";
+//import Image from 'next/image';
 //import styles from '../styles/Home.module.css';
 
-const Home = () => {
+const Home = ({ inventory }) => {
   return (
     <div>
-      <Head>
-        <title>Art Supplies Inventory</title>
-      </Head>
       <h1>Art Supplies Inventory</h1>
+      <ProductList inventory={inventory} />
     </div>
   )
+};
+
+export const getStaticProps = async () => {
+  const res = await fetch(`${server}/api`);
+  const inventory = await res.json();
+  
+  return {
+    props: {
+      inventory,
+    }
+  }
 };
 
 export default Home;
