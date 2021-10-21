@@ -6,7 +6,6 @@ import ProductList from "../components/ProductList";
 const Home = ({ inventory }) => {
   return (
     <div>
-      <h1>Art Supplies Inventory</h1>
       <ProductList inventory={inventory} />
     </div>
   )
