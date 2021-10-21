@@ -1,0 +1,98 @@
+[
+  {
+    "name": "GP-3H",
+    "description": "Graphite pencil 3H",
+    "category": "graphite_pencil",
+    "count": 97
+  },
+  {
+    "name": "GP-2H",
+    "description": "Graphite pencil 2H",
+    "category": "graphite_pencil",
+    "count": 75
+  },
+  {
+    "name": "GP-2B",
+    "description": "Graphite pencil 2B",
+    "category": "graphite_pencil",
+    "count": 80
+  },
+  {
+    "name": "GP-3B",
+    "description": "Graphite pencil 3B",
+    "category": "graphite_pencil",
+    "count": 40
+  },
+  {
+    "name": "PASTEL-SET-BASIC",
+    "description": "Premium pastel stick color set - 40 pack",
+    "category": "pastel",
+    "count": 15
+  },
+  {
+    "name": "PASTEL-SET-DELUXE",
+    "description": "Premium pastel stick color set - 100 pack",
+    "category": "pastel",
+    "count": 0
+  },
+  {
+    "name": "OP-TUBE-CADMIUM-RED",
+    "description": "Oil paint tube 0.41 fl oz non-toxic - Cadmium Red",
+    "category": "oil_paint",
+    "count": 50
+  },
+  {
+    "name": "OP-TUBE-OCHRE",
+    "description": "Oil paint tube 0.41 fl oz non-toxic - Ochre",
+    "category": "oil_paint",
+    "count": 18
+  },
+  {
+    "name": "OP-TUBE-LEMON-YELLOW",
+    "description": "Oil paint tube 0.41 fl oz non-toxic - Lemon Yellow",
+    "category": "oil_paint",
+    "count": 7
+  },
+  {
+    "name": "OP-TUBE-PHTHALO-GREEN",
+    "description": "Oil paint tube 0.41 fl oz non-toxic - Phthalo Green",
+    "category": "oil_paint",
+    "count": 12
+  },
+  {
+    "name": "OP-TUBE-CERULEAN",
+    "description": "Oil paint tube 0.41 fl oz non-toxic - Cerulean",
+    "category": "oil_paint",
+    "count": 34
+  },
+  {
+    "name": "OP-TUBE-TITANIUM-WHITE",
+    "description": "Oil paint tube 0.41 fl oz non-toxic - Titanium White",
+    "category": "oil_paint",
+    "count": 2
+  },
+  {
+    "name": "OP-TUBE-BLACK",
+    "description": "Oil paint tube 0.41 fl oz non-toxic - Black",
+    "category": "oil_paint",
+    "count": 41
+  },
+  {
+    "name": "OP-TUBE-BURNT-INDIGO",
+    "description": "Oil paint tube 0.41 fl oz non-toxic - Burnt Indigo",
+    "category": "oil_paint",
+    "count": 15
+  },
+  {
+    "name": "OIL-PAINT-SET-STARTER",
+    "description": "Oil paint starter kit - 10 pack high pigment load, non-toxic",
+    "category": "oil_paint_set",
+    "count": 4
+  },
+  {
+    "name": "OIL-PAINT-SET-DELUXE",
+    "description": "Oil paint deluxe kit - 32 pack high pigment load, non-toxic",
+    "category": "oil_paint_set",
+    "count": 1
+  }
+]
