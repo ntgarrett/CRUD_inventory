@@ -10,18 +10,8 @@ app.use(cors());
 app.get('/', async (req, res) => {
   try {
     const inventory = await pool.query(`SELECT * FROM product;`);
+    console.log('GET "/" - called.');
     res.json(inventory.rows);
-  } catch (error) {
-    res.send(error.message);
-  }
-});
-
-// Add a product
-app.post('/addproduct', async (req, res) => {
-  try {
-    const { name, description, category, count } = req.body;
-    const product = await pool.query(`INSERT INTO product (name, description, category, count) VALUES ($1,$2,$3,$4) RETURNING *;`, [name, description, category, count]);
-    res.json(product.rows[0]);
   } catch (error) {
     res.send(error.message);
   }
@@ -32,9 +22,26 @@ app.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const product = await pool.query(`SELECT * FROM product WHERE id = $1`, [id]);
+    console.log('GET "/:id" - called.');
     res.json(product.rows[0]);
   } catch (error) {
     res.json(error.message);
+  }
+});
+
+// Add a product
+app.post('/addproduct', async (req, res) => {
+  try {
+    const { name, description, category, count } = req.body;
+    const product = await pool.query(
+      `INSERT INTO product (name, description, category, count) 
+      VALUES ($1,$2,$3,$4) RETURNING *;`, 
+      [name, description, category, count]
+    );
+    console.log('POST "/addproduct" - called.');
+    res.json(product.rows[0]);
+  } catch (error) {
+    res.send(error.message);
   }
 });
 
@@ -50,6 +57,7 @@ app.put('/:id', async (req,res) => {
       WHERE id=$5;`, 
       [name, description, category, count, id]
     );
+    console.log('PUT "/:id" - called.');
     res.json(updatedProduct.rows[0]);
   } catch (error) {
     res.json(error.message);
@@ -61,12 +69,13 @@ app.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const deletedProduct = await pool.query(`DELETE FROM product WHERE id = $1;`, [id]);
-    res.json('Deleted product successfully.');
+    console.log('DELETE "/:id" - called.');
+    res.json('Deleted product.');
   } catch (error) {
     res.json(error.message);
   }
 });
 
 app.listen('3306', () => {
-  console.log('Server started...');
+  console.log(`Server started on port 3306...`);
 });
