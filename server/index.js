@@ -9,7 +9,10 @@ app.use(cors());
 // Get all products
 app.get('/', async (req, res) => {
   try {
-    const inventory = await pool.query(`SELECT * FROM product;`);
+    const inventory = await pool.query(`
+      SELECT * FROM product;
+    `);
+
     console.log('GET "/" - called.');
     res.json(inventory.rows);
   } catch (error) {
@@ -21,7 +24,13 @@ app.get('/', async (req, res) => {
 app.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const product = await pool.query(`SELECT * FROM product WHERE id = $1`, [id]);
+    const product = await pool.query(`
+      SELECT * FROM product
+      WHERE id = $1
+      `, 
+      [id]
+    );
+    
     console.log('GET "/:id" - called.');
     res.json(product.rows[0]);
   } catch (error) {
@@ -33,11 +42,14 @@ app.get('/:id', async (req, res) => {
 app.post('/addproduct', async (req, res) => {
   try {
     const { name, description, category, count } = req.body;
-    const product = await pool.query(
-      `INSERT INTO product (name, description, category, count) 
-      VALUES ($1,$2,$3,$4) RETURNING *;`, 
+    const product = await pool.query(`
+      INSERT INTO product (name, description, category, count) 
+      VALUES ($1,$2,$3,$4)
+      RETURNING *;
+      `, 
       [name, description, category, count]
     );
+    
     console.log('POST "/addproduct" - called.');
     res.json(product.rows[0]);
   } catch (error) {
@@ -51,12 +63,15 @@ app.put('/:id', async (req,res) => {
     const { id } = req.params;
     const { name, description, category, count } = req.body;
     
-    const updatedProduct = await pool.query(
-      `UPDATE product
+    const updatedProduct = await pool.query(`
+      UPDATE product
       SET name = $1, description = $2, category = $3, count = $4
-      WHERE id=$5;`, 
+      WHERE id=$5
+      RETURNING *;
+      `, 
       [name, description, category, count, id]
     );
+    
     console.log('PUT "/:id" - called.');
     res.json(updatedProduct.rows[0]);
   } catch (error) {
@@ -68,7 +83,14 @@ app.put('/:id', async (req,res) => {
 app.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedProduct = await pool.query(`DELETE FROM product WHERE id = $1 RETURNING *;`, [id]).then(response => { return response.rows[0]});
+    const deletedProduct = await pool.query(`
+      DELETE FROM product 
+      WHERE id = $1
+      RETURNING *;
+      `, 
+      [id]
+    ).then(response => { return response.rows[0] });
+    
     console.log('DELETE "/:id" - called.');
     res.json(deletedProduct);
   } catch (error) {
