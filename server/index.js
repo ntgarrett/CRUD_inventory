@@ -68,9 +68,9 @@ app.put('/:id', async (req,res) => {
 app.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedProduct = await pool.query(`DELETE FROM product WHERE id = $1;`, [id]);
+    const deletedProduct = await pool.query(`DELETE FROM product WHERE id = $1 RETURNING *;`, [id]).then(response => { return response.rows[0]});
     console.log('DELETE "/:id" - called.');
-    res.json('Deleted product.');
+    res.json(deletedProduct);
   } catch (error) {
     res.json(error.message);
   }
