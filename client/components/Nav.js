@@ -9,6 +9,9 @@ const Nav = () => {
           <li>
             <Link href='/'>Inventory</Link>
           </li>
+          <li>
+            <Link href='/new'>Add New Product</Link>
+          </li>
         </ul>
       </nav>
     </>
