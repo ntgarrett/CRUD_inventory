@@ -19,8 +19,8 @@ const ProductList = ({ inventory }) => {
           </thead>
           <tbody>
             {inventory.map((product) => (
-              <Link href={`/product/${product.id}`}>
-                <tr key={product.id}>
+              <Link key={product.id} href={`/product/${product.id}`}>
+                <tr>
                   <td>{product.name}</td>
                   <td>{product.description}</td>
                   <td id={productStyles["category"]}>{product.category}</td>
