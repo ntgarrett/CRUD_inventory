@@ -70,10 +70,10 @@ app.put('/:id', async (req,res) => {
       RETURNING *;
       `, 
       [name, description, category, count, id]
-    );
+    ).then(response => { return response.rows[0] });
     
     console.log('PUT "/:id" - called.');
-    res.json(updatedProduct.rows[0]);
+    res.json(updatedProduct);
   } catch (error) {
     res.json(error.message);
   }
