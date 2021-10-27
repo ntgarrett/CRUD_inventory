@@ -12,5 +12,5 @@ export default async function handler(req, res) {
     body: JSON.stringify({ name: name, description: description, category: category, count: count})
   }).then(response => response.json());
 
-  await res.status(200).json(`Updated product: ${updatedProduct}`);
+  await res.status(200).json(updatedProduct);
 }
