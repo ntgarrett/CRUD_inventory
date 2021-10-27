@@ -11,9 +11,8 @@ const AddProduct = () => {
   });
 
   const handleChange = (e) => {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
+    const value = e.target.value;
+    const name = e.target.name;
 
     setNewProduct((prevState) => ({
       ...prevState,
@@ -31,61 +30,64 @@ const AddProduct = () => {
         name: newProduct.name,
         description: newProduct.description,
         category: newProduct.category,
-        count: parseInt(newProduct.count)
+        count: newProduct.count
       })
-    }).then(response => response.json());
+    }).then(response => response.json())
+    .catch(error => console.log(error));
   }
 
   return (
     <div>
-      <form>
-        <label>
-          Name:
-          <input 
-            name="name" 
-            type="text"
-            value={newProduct.name} 
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Description:
-          <input 
-            name="description" 
-            type="text"
-            value={newProduct.description} 
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Category:
-          <input 
-            name="category"
-            type="text" 
-            value={newProduct.category} 
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          # In Stock:
-          <input 
-            name="count"
-            type="number"
-            min="0"
-            value={newProduct.count}
-            onChange={handleChange}
-          />
-        </label>
-        <button 
-          onClick={() => { 
-            if (window.confirm('Add new product to inventory?')) {
-              handleSubmit();
-            }
-          }}
-        >
-          Add Product
-        </button>
-      </form>
+      <label>
+        Name:
+        <input 
+          name="name" 
+          type="text"
+          maxLength={100}
+          value={newProduct.name} 
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Description:
+        <input 
+          name="description" 
+          type="text"
+          maxLength={255}
+          value={newProduct.description} 
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Category:
+        <input 
+          name="category"
+          type="text" 
+          maxLength={100}
+          value={newProduct.category} 
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        # In Stock:
+        <input 
+          name="count"
+          type="number"
+          min={0}
+          max={9999}
+          value={newProduct.count}
+          onChange={handleChange}
+        />
+      </label>
+      <button 
+        onClick={() => { 
+          if (window.confirm('Add new product to inventory?')) {
+            handleSubmit();
+          }
+        }}
+      >
+        Add Product
+      </button>
     </div>
   );
 };
