@@ -1,16 +1,16 @@
 import Link from "next/link";
-// add styles
+import navStyles from "../styles/Nav.module.css";
 
 const Nav = () => {
   return (
     <>
-      <nav>
+      <nav className={navStyles.nav}>
         <ul>
           <li>
             <Link href='/'>Inventory</Link>
           </li>
           <li>
-            <Link href='/new'>Add New Product</Link>
+            <Link href='/new'>New Product</Link>
           </li>
         </ul>
       </nav>
