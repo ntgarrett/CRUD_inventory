@@ -1,16 +1,15 @@
 import Meta from "./Meta";
 import Header from "./Header";
 import Nav from "./Nav";
-
-// todo: add styles
+import layoutStyles from "../styles/Layout.module.css";
 
 const Layout = ({ children }) => {
   return (
     <>
       <Meta />
       <Nav />
-      <div>
-        <main>
+      <div className={layoutStyles.container}>
+        <main className={layoutStyles.main}>
           <Header />
           {children}
         </main>
