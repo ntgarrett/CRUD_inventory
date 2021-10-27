@@ -1,4 +1,8 @@
+import Link from "next/link";
 import productStyles from "../styles/Product.module.css";
+
+// todo:  Add sorting (name, category, count)
+//        Add search bar (name)
 
 const ProductList = ({ inventory }) => {
   return (
@@ -15,12 +19,14 @@ const ProductList = ({ inventory }) => {
           </thead>
           <tbody>
             {inventory.map((product) => (
-              <tr key={product.id}>
-                <td>{product.name}</td>
-                <td>{product.description}</td>
-                <td id={productStyles["category"]}>{product.category}</td>
-                <td id={productStyles["count"]}>{product.count}</td>
-              </tr>
+              <Link href={`/product/${product.id}`}>
+                <tr key={product.id}>
+                  <td>{product.name}</td>
+                  <td>{product.description}</td>
+                  <td id={productStyles["category"]}>{product.category}</td>
+                  <td id={productStyles["count"]}>{product.count}</td>
+                </tr>
+              </Link>
             ))}
           </tbody>
         </table>
