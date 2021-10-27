@@ -9,5 +9,5 @@ export default async function handler(req, res) {
     body: JSON.stringify(req.body)
   }).then(response => response.json());
 
-  await res.status(200).json(`${addedProduct} added successfully.`);
+  await res.status(200).json(addedProduct);
 };
