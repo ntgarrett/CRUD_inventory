@@ -1,5 +1,5 @@
 import Link from "next/link";
-import productStyles from "../styles/Product.module.css";
+import productStyles from "../styles/ProductList.module.css";
 
 // todo:  Add sorting (name, category, count)
 //        Add search bar (name)

@@ -1,0 +1,40 @@
+.table {
+  padding: 0 0 25vh 0;
+}
+
+.table table,
+.table th,
+.table td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 1em;
+}
+
+.table table {
+  width: 100%;
+}
+
+#count,
+#category {
+  text-align: center;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #afafaf;
+}
+
+.table tbody tr:hover {
+  cursor: pointer;
+  background-color: aquamarine;
+}
+
+@media (max-width: 600px) {
+  .table table,
+  .table th,
+  .table td {
+    padding: 3px;
+  }
+  .table table {
+    font-size: 0.9em;
+  }
+}
