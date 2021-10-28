@@ -1,16 +1,13 @@
 import { server } from "../../../config";
+import ProductItem from "../../../components/ProductItem";
 
 // todo:  add edit and delete buttons
-//        add a link to go back
 //        add styles
 
 const product = ({ product }) => {
   return (
     <>
-      <h2>{product.name}</h2>
-      <p>{product.description}</p>
-      <p>{product.category}</p>
-      <p>Count: {product.count}</p>
+      <ProductItem product={product} />
     </>
   );
 };
