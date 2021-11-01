@@ -1,5 +1,5 @@
 import Link from "next/link";
-import productStyles from "../styles/ProductList.module.css";
+import tableStyles from "../styles/ProductList.module.css";
 
 // todo:  Add sorting (name, category, count)
 //        Add search bar (name)
@@ -7,7 +7,7 @@ import productStyles from "../styles/ProductList.module.css";
 const ProductList = ({ inventory }) => {
   return (
     <>
-      <div className={productStyles.table}>
+      <div className={tableStyles.table}>
         <table>
           <thead>
             <tr>
@@ -23,8 +23,8 @@ const ProductList = ({ inventory }) => {
                 <tr>
                   <td>{product.name}</td>
                   <td>{product.description}</td>
-                  <td id={productStyles["category"]}>{product.category}</td>
-                  <td id={productStyles["count"]}>{product.count}</td>
+                  <td id={tableStyles["category"]}>{product.category}</td>
+                  <td id={tableStyles["count"]}>{product.count}</td>
                 </tr>
               </Link>
             ))}
