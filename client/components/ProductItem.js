@@ -103,7 +103,7 @@ const ProductItem = ({ product }) => {
 
   const EditingForm = () => {
     return (
-      <div className={productStyles.container}>
+      <div className={`${productStyles.container} ${productStyles.editform}`}>
         <div className={productStyles.name}>
           <label className={productStyles.fieldlabel}>Name</label>
           <p>

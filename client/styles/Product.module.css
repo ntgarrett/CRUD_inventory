@@ -104,6 +104,15 @@
   font-family: inherit;
 }
 
+.editfield:focus {
+  outline: none;
+}
+
+.editform p:hover {
+  border-color: blue;
+  box-shadow: 0 0 .2rem cornflowerblue;
+}
+
 .textarea {
   resize: none;
 }
