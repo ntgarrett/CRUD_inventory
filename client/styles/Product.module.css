@@ -1,31 +1,115 @@
-.table {
-  padding: 0 0 25vh 0;
+.container {
+  display: flex;
+  width: 90%;
+  margin: 4em auto 0 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
 }
 
-.table table,
-.table th,
-.table td {
-  border: 1px solid black;
-  border-collapse: collapse;
-  padding: 1em;
+.container p:not(:last-child) {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.table table {
+.container div p {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 0 0 1rem 0;
+}
+
+.name {
+  flex-grow: 1;
+}
+
+.name p {
+  font-weight: bold;
+}
+
+.category {
   width: 100%;
 }
 
-#count,
-#category {
+.category p {
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.count {
+  flex-shrink: 1;
+  min-width: 15%;
+}
+
+.count p {
+  text-align: center;
+}
+
+.description {
+  width: 100%;
+}
+
+.fieldlabel {
+  font-weight: normal;
+  font-style: normal;
+  color: indigo;
+  font-size: 0.9em;
+  margin: 0 0 0 5px;
+}
+
+.btn {
+  margin: 85px;
+  width: 150px;
+  height: 40px;
+  box-shadow: 2px 2px 3px #141414;
+  border-radius: 5px;
+}
+
+.btn:hover:enabled {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.btntext {
+  font-size: 1.3em;
+  color: #141414;
+}
+
+.editbtn {
+  background-color: khaki;
+}
+
+.deletebtn {
+  background-color: #bf4342;
+}
+
+.btncontainer button:last-child .btntext {
+  color: beige;
+  text-shadow: 2px 2px #141414;
+}
+
+.editfield {
+  width: 100%;
+  font-size: 1em;
+  border: 0;
+  font-family: inherit;
+}
+
+.editcount {
   text-align: center;
 }
 
 @media (max-width: 600px) {
-  .table table,
-  .table th,
-  .table td {
-    padding: 3px;
+  .container {
+    width: 100%;
+    font-size: 1rem;
   }
-  .table table {
-    font-size: 0.9em;
+  .name,
+  .category,
+  .count {
+    width: 100%;
   }
 }
