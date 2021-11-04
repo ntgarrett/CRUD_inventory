@@ -149,7 +149,7 @@ const ProductItem = ({ product }) => {
           <p>
             <textarea
               key="description"
-              className={productStyles.editfield}
+              className={`${productStyles.editfield} ${productStyles.textarea}`}
               name="description"
               type="text"
               maxLength={255}
