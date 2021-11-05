@@ -6,3 +6,9 @@
 .main {
   padding: 0px 15px 0px 15px;
 }
+
+@media (max-width: 600px) {
+  .main {
+    padding: 0 5px 0 5px;
+  }
+}
