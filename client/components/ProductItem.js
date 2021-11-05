@@ -163,7 +163,7 @@ const ProductItem = ({ product }) => {
             disabled={isProductEdited(Object.values(productInfo), Object.values(product))}
             onClick={handleSubmit}
           >
-            Save
+            <span className={productStyles.btntext}>Save</span>
           </button>
           <button
             className={productStyles.btn}
@@ -176,7 +176,7 @@ const ProductItem = ({ product }) => {
               }
             }}
           >
-            Cancel
+            <span className={productStyles.btntext}>Cancel</span>
           </button>
         </div>
       </div>
