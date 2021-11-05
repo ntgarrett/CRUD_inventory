@@ -145,10 +145,9 @@ const ProductItem = ({ product }) => {
           </p>
         </div>
         <div className={productStyles.description}>
-          <label for="description" className={productStyles.fieldlabel}>Description</label>
+          <label className={productStyles.fieldlabel}>Description</label>
           <p>
             <textarea
-              key="description"
               className={`${productStyles.editfield} ${productStyles.textarea}`}
               name="description"
               type="text"
