@@ -8,23 +8,47 @@ const ProductList = ({ inventory }) => {
   return (
     <>
       <div className={tableStyles.table}>
-        <table>
+        <table id="inventoryTable">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Category</th>
-              <th>In Stock</th>
+              <th 
+                className={tableStyles.nameCol}
+              >
+                Name
+              </th>
+              <th 
+                className={tableStyles.descriptionCol}
+              >
+                Description
+              </th>
+              <th 
+                className={tableStyles.categoryCol}
+              >
+                Category
+              </th>
+              <th 
+                className={tableStyles.countCol}
+              >
+                In Stock
+              </th>
             </tr>
           </thead>
           <tbody>
             {inventory.map((product) => (
               <Link key={product.id} href={`/product/${product.id}`}>
                 <tr>
-                  <td>{product.name}</td>
-                  <td>{product.description}</td>
-                  <td id={tableStyles["category"]}>{product.category}</td>
-                  <td id={tableStyles["count"]}>{product.count}</td>
+                  <td title={product.name}>
+                    {product.name}
+                  </td>
+                  <td title={product.description}>
+                    {product.description}
+                  </td>
+                  <td title={product.category} className={tableStyles.columnCentered}>
+                    {product.category}
+                  </td>
+                  <td className={tableStyles.columnCentered}>
+                    {product.count}
+                  </td>
                 </tr>
               </Link>
             ))}

@@ -1,5 +1,6 @@
 .table {
   padding: 0 0 25vh 0;
+  font-size: 14px;
 }
 
 .table table,
@@ -8,14 +9,33 @@
   border: 1px solid black;
   border-collapse: collapse;
   padding: 0.75em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .table table {
   width: 100%;
+  table-layout: fixed;
 }
 
-#count,
-#category {
+.countCol {
+  width: 10%;
+}
+
+.categoryCol {
+  width: 20%;
+}
+
+.nameCol {
+  width: 20%;
+}
+
+.descriptionCol {
+  width: 50%;
+}
+
+.columnCentered {
   text-align: center;
 }
 
@@ -32,9 +52,15 @@
   .table table,
   .table th,
   .table td {
-    padding: 3px;
+    padding: 10px;
+  }
+  .countCol {
+    width: 20%;
+  }
+  .categoryCol {
+    width: 25%;
   }
   .table table {
-    font-size: 0.9em;
+    font-size: 10px;
   }
 }
