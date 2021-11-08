@@ -79,7 +79,7 @@
   cursor: pointer;
 }
 
-.btntext {
+.btntext:enabled {
   font-size: 1.2em;
   color: #141414;
 }
