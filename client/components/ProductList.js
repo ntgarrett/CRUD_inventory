@@ -1,59 +1,101 @@
+import { useMemo } from "react";
 import Link from "next/link";
+import { useTable, useSortBy, useGlobalFilter } from "react-table";
+import { GlobalFilter } from "./GlobalFilter";
 import tableStyles from "../styles/ProductList.module.css";
 
-// todo:  Add sorting (name, category, count)
-//        Add search bar (name)
+const Table = ({ columns, data }) => {
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    state,   
+    setGlobalFilter, 
+  } = useTable(
+    {
+      columns,
+      data,
+    },
+    useGlobalFilter,
+    useSortBy,
+  );
+
+  const { globalFilter } = state;
+
+  return (
+    <>
+      <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/>
+      <br/>
+      <table {...getTableProps()}>
+        <thead>
+          {headerGroups.map(headerGroup => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map(column => (
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  {column.render('Header')}
+                  <span>
+                    {column.isSorted
+                      ? column.isSortedDesc
+                        ? ` ${String.fromCharCode("9660")}`
+                        : ` ${String.fromCharCode("9650")}`
+                      : ''}
+                  </span>
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map(
+            (row, i) => {
+              prepareRow(row);
+              return (
+                <Link key={row.original.id} href={`/product/${row.original.id}`}>
+                  <tr {...row.getRowProps()}>
+                    {row.cells.map(cell => {
+                      return (<td {...cell.getCellProps()}>{cell.render('Cell')}</td>)
+                    })}
+                  </tr>
+                </Link>
+              )}
+          )}
+        </tbody>
+      </table>
+    </>
+  );
+}
 
 const ProductList = ({ inventory }) => {
+  const columns = useMemo(() => [
+    {
+      Header: 'Inventory',
+      columns: [
+        {
+          Header: 'Name',
+          accessor: 'name',
+        },
+        {
+          Header: 'Description',
+          accessor: 'description',
+        },
+        {
+          Header: 'Category',
+          accessor: 'category',
+        },
+        {
+          Header: 'In Stock',
+          accessor: 'count',
+        },
+      ],
+    },
+  ],[]);
+
   return (
     <>
       <div className={tableStyles.table}>
-        <table id="inventoryTable">
-          <thead>
-            <tr>
-              <th 
-                className={tableStyles.nameCol}
-              >
-                Name
-              </th>
-              <th 
-                className={tableStyles.descriptionCol}
-              >
-                Description
-              </th>
-              <th 
-                className={tableStyles.categoryCol}
-              >
-                Category
-              </th>
-              <th 
-                className={tableStyles.countCol}
-              >
-                In Stock
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {inventory.map((product) => (
-              <Link key={product.id} href={`/product/${product.id}`}>
-                <tr>
-                  <td title={product.name}>
-                    {product.name}
-                  </td>
-                  <td title={product.description}>
-                    {product.description}
-                  </td>
-                  <td title={product.category} className={tableStyles.columnCentered}>
-                    {product.category}
-                  </td>
-                  <td className={tableStyles.columnCentered}>
-                    {product.count}
-                  </td>
-                </tr>
-              </Link>
-            ))}
-          </tbody>
-        </table>
+        <Table columns={columns} data={inventory} />
       </div>
     </>
   );
