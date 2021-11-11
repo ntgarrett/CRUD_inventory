@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  flex-grow: 1;
+  font-size: 1.1em;
+  margin: 0 0 0 .5em;
+  padding: .5em 10px .5em 10px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
+}
