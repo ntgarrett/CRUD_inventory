@@ -24,23 +24,7 @@
   table-layout: fixed;
 }
 
-.countCol {
-  width: 10%;
-}
-
-.categoryCol {
-  width: 20%;
-}
-
-.nameCol {
-  width: 20%;
-}
-
-.descriptionCol {
-  width: 50%;
-}
-
-.columnCentered {
+.table td:nth-last-child(-n+2) {
   text-align: center;
 }
 
@@ -58,12 +42,6 @@
   .table th,
   .table td {
     padding: 10px;
-  }
-  .countCol {
-    width: 20%;
-  }
-  .categoryCol {
-    width: 25%;
   }
   .table table {
     font-size: 10px;
