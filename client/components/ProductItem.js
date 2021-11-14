@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { server } from "../config";
 import productStyles from "../styles/Product.module.css";
 
 const ProductItem = ({ product }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [productInfo, setProductInfo] = useState(product);  
+
+  const router = useRouter();
 
   const onClickEdit = () => {
     setIsEditing(!isEditing);
@@ -23,7 +26,10 @@ const ProductItem = ({ product }) => {
   const handleDelete = async () => {
     const deletedProduct = await fetch(`${server}/api/delete/${product.id}`, {
       method: 'DELETE'
-    }).then(response => response.json())
+    }).then(response => {
+      response.json();
+      router.push('/');
+    })
     .catch(error => console.log(error));
   };
 
