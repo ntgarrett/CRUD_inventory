@@ -108,9 +108,16 @@
   outline: none;
 }
 
+.newform p:hover,
 .editform p:hover {
   border-color: blue;
   box-shadow: 0 0 .2rem cornflowerblue;
+}
+
+.infolabel {
+  width: 100%;
+  text-align: center;
+  margin: 0 0 2rem 0;
 }
 
 .textarea {
