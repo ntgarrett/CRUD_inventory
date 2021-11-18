@@ -15,7 +15,7 @@
 }
 
 .table thead tr:first-child {
-  background-color: black;
+  background-color: #212529;
   color: white;
 }
 
@@ -29,12 +29,20 @@
 }
 
 .table tbody tr:nth-child(odd) {
-  background-color: #afafaf;
+  background-color: #eddcd2;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #fff1e6;
+}
+
+.table thead tr:not(:first-child) {
+  background-color: #ffbf69;
 }
 
 .table tbody tr:hover {
   cursor: pointer;
-  background-color: aquamarine;
+  background-color: #caf0f8;
 }
 
 @media (max-width: 600px) {
