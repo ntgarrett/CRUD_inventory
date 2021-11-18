@@ -53,7 +53,7 @@ const AddProduct = () => {
   return (
     <div className={`${productStyles.container} ${productStyles.newform}`}>
       <h4 className={productStyles.infolabel}>
-        Add New Product
+        Enter New Product Details
       </h4>
       <div className={productStyles.name}>
         <label className={productStyles.fieldlabel}>Name</label>
@@ -122,9 +122,12 @@ const AddProduct = () => {
         </button>
         <button
           className={productStyles.btn}
-          disabled={isEdited()}
           onClick={() => {
-            if (window.confirm('Discard changes?')) {
+            if (!isEdited()) {
+              if (window.confirm('Discard changes?')) {
+                router.push('/');
+              }
+            } else {
               router.push('/');
             }
           }}
