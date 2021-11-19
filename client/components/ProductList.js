@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import Link from "next/link";
-import { useTable, useSortBy, useGlobalFilter } from "react-table";
+import { useTable, useSortBy, useGlobalFilter, usePagination } from "react-table";
 import { GlobalFilter } from "./GlobalFilter";
 import tableStyles from "../styles/ProductList.module.css";
 
@@ -9,20 +9,33 @@ const Table = ({ columns, data }) => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
     prepareRow,
-    state,   
+    page,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    state,
     setGlobalFilter, 
   } = useTable(
     {
       columns,
       data,
+      initialState: {
+        pageIndex: 0,
+        pageSize: 15,
+      }
     },
     useGlobalFilter,
     useSortBy,
+    usePagination
   );
 
   const { globalFilter } = state;
+    console.log(state);
 
   return (
     <>
@@ -48,7 +61,7 @@ const Table = ({ columns, data }) => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map(
+          {page.map(
             (row, i) => {
               prepareRow(row);
               return (
@@ -63,6 +76,21 @@ const Table = ({ columns, data }) => {
           )}
         </tbody>
       </table>
+      <div className={tableStyles.pagination}>
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {'<<'}
+        </button>{' '}
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          {'<'}
+        </button>{' '}
+        <span>{`Page ${state.pageIndex + 1} of ${pageCount == 0 ? 1 : pageCount}`}</span>
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          {'>'}
+        </button>{' '}
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {'>>'}
+        </button>{' '}
+      </div>
     </>
   );
 }

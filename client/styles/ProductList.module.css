@@ -1,6 +1,6 @@
 .table {
   padding: 0 0 25vh 0;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .table table,
@@ -43,6 +43,17 @@
 .table tbody tr:hover {
   cursor: pointer;
   background-color: #caf0f8;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.pagination button {
+  margin: 0 1em 0 1em;
 }
 
 @media (max-width: 600px) {
