@@ -35,7 +35,6 @@ const Table = ({ columns, data }) => {
   );
 
   const { globalFilter } = state;
-    console.log(state);
 
   return (
     <>
