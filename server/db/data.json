@@ -26,13 +26,13 @@
   {
     "name": "PASTEL-SET-BASIC",
     "description": "Premium pastel stick color set - 40 pack",
-    "category": "pastel",
+    "category": "pastel_set",
     "count": 15
   },
   {
     "name": "PASTEL-SET-DELUXE",
     "description": "Premium pastel stick color set - 100 pack",
-    "category": "pastel",
+    "category": "pastel_set",
     "count": 0
   },
   {
@@ -94,5 +94,226 @@
     "description": "Oil paint deluxe kit - 32 pack high pigment load, non-toxic",
     "category": "oil_paint_set",
     "count": 1
+  },
+  {
+    "name": "PASTEL-WHITE",
+    "description": "Soft pastel stick 0.56 x 1.56 x 4 inches rich pigment non-toxic - white",
+    "category": "pastel",
+    "count": 22
+  },
+  {
+    "name": "PASTEL-SALMON-PINK",
+    "description": "Soft pastel stick 0.56 x 1.56 x 4 inches rich pigment non-toxic - salmon pink",
+    "category": "pastel",
+    "count": 4
+  },
+  {
+    "name": "PASTEL-SCARLET",
+    "description": "Soft pastel stick 0.56 x 1.56 x 4 inches rich pigment non-toxic - scarlet",
+    "category": "pastel",
+    "count": 17
+  },
+  {
+    "name": "PASTEL-IRON-BLUE",
+    "description": "Soft pastel stick 0.56 x 1.56 x 4 inches rich pigment non-toxic - iron blue",
+    "category": "pastel",
+    "count": 29
+  },
+  {
+    "name": "PASTEL-OLIVE-GREEN",
+    "description": "Soft pastel stick 0.56 x 1.56 x 4 inches rich pigment non-toxic - olive green",
+    "category": "pastel",
+    "count": 34
+  },
+  {
+    "name": "PASTEL-COCOA-BROWN",
+    "description": "Soft pastel stick 0.56 x 1.56 x 4 inches rich pigment non-toxic - cocoa brown",
+    "category": "pastel",
+    "count": 15
+  },
+  {
+    "name": "PASTEL-BLACK",
+    "description": "Soft pastel stick 0.56 x 1.56 x 4 inches rich pigment non-toxic - black",
+    "category": "pastel",
+    "count": 29
+  },
+  {
+    "name": "PASTEL-ROSE-PINK",
+    "description": "Soft pastel stick 0.56 x 1.56 x 4 inches rich pigment non-toxic - rose pink",
+    "category": "pastel",
+    "count": 1
+  },
+  {
+    "name": "PASTEL-LEMON-YELLOW",
+    "description": "Soft pastel stick 0.56 x 1.56 x 4 inches rich pigment non-toxic - lemon yellow",
+    "category": "pastel",
+    "count": 20
+  },
+  {
+    "name": "PASTEL-WARM-GREY",
+    "description": "Soft pastel stick 0.56 x 1.56 x 4 inches rich pigment non-toxic - warm grey",
+    "category": "pastel",
+    "count": 7
+  },
+  {
+    "name": "PASTEL-INDIGO-BLUE",
+    "description": "Soft pastel stick 0.56 x 1.56 x 4 inches rich pigment non-toxic - indigo blue",
+    "category": "pastel",
+    "count": 4
+  },
+  {
+    "name": "FLAT-BRUSH-#2",
+    "description": "Flat tipped brush size 2 - 2.4mm hair length for acrylic painting",
+    "category": "brush",
+    "count": 5
+  },
+  {
+    "name": "FLAT-BRUSH-#4",
+    "description": "Flat tipped brush size 4 - 3.2mm hair length for acrylic painting",
+    "category": "brush",
+    "count": 7
+  },
+  {
+    "name": "FLAT-BRUSH-#6",
+    "description": "Flat tipped brush size 6 - 4.8mm hair length for acrylic painting",
+    "category": "brush",
+    "count": 10
+  },
+  {
+    "name": "FLAT-BRUSH-#16",
+    "description": "Flat tipped brush size 16 - 14.2mm hair length for acrylic painting",
+    "category": "brush",
+    "count": 5
+  },
+  {
+    "name": "FLAT-BRUSH-#20",
+    "description": "Flat tipped brush size 20 - 20.6mm hair length for acrylic painting",
+    "category": "brush",
+    "count": 1
+  },
+  {
+    "name": "FLAT-BRUSH-#2",
+    "description": "Flat tipped brush size 2 - 2.4mm hair length for acrylic painting",
+    "category": "brush",
+    "count": 5
+  },
+  {
+    "name": "FILBERT-BRUSH-#2",
+    "description": "Filbert paint brush size 2 - 3/32\"",
+    "category": "brush",
+    "count": 11
+  },
+  {
+    "name": "FILBERT-BRUSH-#4",
+    "description": "Filbert paint brush size 4 - 5/32\"",
+    "category": "brush",
+    "count": 10
+  },
+  {
+    "name": "FILBERT-BRUSH-#6",
+    "description": "Filbert paint brush size 6 - 6/32\"",
+    "category": "brush",
+    "count": 9
+  },
+  {
+    "name": "FILBERT-BRUSH-#10",
+    "description": "Filbert paint brush size 10 - 10/32\"",
+    "category": "brush",
+    "count": 12
+  },
+  {
+    "name": "FILBERT-BRUSH-#12",
+    "description": "Filbert paint brush size 12 - 12/32\"",
+    "category": "brush",
+    "count": 3
+  },
+  {
+    "name": "INK-PEN-003",
+    "description": "Illustrator black inking pen size 003 - 0.15mm fine line non-bleeding",
+    "category": "ink_pen",
+    "count": 5
+  },
+  {
+    "name": "INK-PEN-01",
+    "description": "Illustrator black inking pen size 01 - 0.25mm fine line non-bleeding",
+    "category": "ink_pen",
+    "count": 0
+  },
+  {
+    "name": "INK-PEN-05",
+    "description": "Illustrator black inking pen size 05 - 0.45mm fine line non-bleeding",
+    "category": "ink_pen",
+    "count": 10
+  },  {
+    "name": "INK-PEN-08",
+    "description": "Illustrator black inking pen size 08 - 0.50mm fine line non-bleeding",
+    "category": "ink_pen",
+    "count": 16
+  },
+  {
+    "name": "CP-SET-BASIC",
+    "description": "Prismaline colored pencil set smooth pigment robust core - 24 count",
+    "category": "color_pencil_set",
+    "count": 40
+  },
+  {
+    "name": "CP-SET-DELUXE",
+    "description": "Prismaline colored pencil set smooth pigment robust core - 56 count",
+    "category": "color_penicl_set",
+    "count": 1
+  },
+  {
+    "name": "CP-APPLE-GREEN",
+    "description": "Prismaline colored pencil - smooth pigment robust core - apple green",
+    "category": "color_pencil",
+    "count": 30
+  },
+  {
+    "name": "CP-TRUE-BLUE",
+    "description": "Prismaline colored pencil - smooth pigment robust core - true blue",
+    "category": "color_pencil",
+    "count": 14
+  },
+  {
+    "name": "CP-CERULEAN-BLUE",
+    "description": "Prismaline colored pencil - smooth pigment robust core - cerulean blue",
+    "category": "color_pencil",
+    "count": 6
+  },
+  {
+    "name": "CP-POPPY-RED",
+    "description": "Prismaline colored pencil - smooth pigment robust core - poppy red",
+    "category": "color_pencil",
+    "count": 41
+  },
+  {
+    "name": "CP-PEACH",
+    "description": "Prismaline colored pencil - smooth pigment robust core - peach",
+    "category": "color_pencil",
+    "count": 15
+  },
+  {
+    "name": "CP-GOLDENROD",
+    "description": "Prismaline colored pencil - smooth pigment robust core - goldenrod",
+    "category": "color_pencil",
+    "count": 9
+  },
+  {
+    "name": "CP-SPANISH-ORANGE",
+    "description": "Prismaline colored pencil - smooth pigment robust core - spanish orange",
+    "category": "color_pencil",
+    "count": 33
+  },
+  {
+    "name": "CP-BLACK",
+    "description": "Prismaline colored pencil - smooth pigment robust core - black",
+    "category": "color_pencil",
+    "count": 90
+  },
+  {
+    "name": "CP-WHITE",
+    "description": "Prismaline colored pencil - smooth pigment robust core - white",
+    "category": "color_pencil",
+    "count": 71
   }
 ]
