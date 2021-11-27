@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5em;
+}
+
+.container span {
+  margin: 2em 0 5px 0;
+  color: #023047;
+}
+
+.container input {
+  padding: .75em;
+  width: 20%;
+}
+
+.button {
+  margin-top: 5em;
+  padding: .75em 2em .75em 2em;
+  border-radius: 25px;
+}
