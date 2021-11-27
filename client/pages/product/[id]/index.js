@@ -1,9 +1,6 @@
 import { server } from "../../../config";
 import ProductItem from "../../../components/ProductItem";
 
-// todo:  add edit and delete buttons
-//        add styles
-
 const product = ({ product }) => {
   return (
     <>
