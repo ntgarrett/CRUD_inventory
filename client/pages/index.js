@@ -1,24 +1,15 @@
-import { server } from '../config';
-import ProductList from "../components/ProductList";
-import styles from '../styles/Home.module.css';
 
-const Home = ({ inventory }) => {
+
+const Dashboard = () => {
   return (
-    <div className={styles.container}>
-      <ProductList inventory={inventory} />
-    </div>
-  )
+    <>
+      <div>
+        <h1>Dashboard</h1>
+        <h2>Go to Inventory</h2>
+        <h2>Employee Ops</h2>
+      </div>
+    </>
+  );
 };
 
-export const getStaticProps = async () => {
-  const res = await fetch(`${server}/api`);
-  const inventory = await res.json();
-  
-  return {
-    props: {
-      inventory,
-    }
-  }
-};
-
-export default Home;
+export default Dashboard;
