@@ -5,6 +5,7 @@ const pool = require('./db/db');
 const app = express();
 app.use(express.json());
 app.use(cors());
+const PORT = 3306;
 
 // Get all products
 app.get('/', async (req, res) => {
@@ -98,6 +99,29 @@ app.delete('/:id', async (req, res) => {
   }
 });
 
-app.listen('3306', () => {
-  console.log(`Server started on port 3306...`);
+// Login user
+app.post('/login', async (req, res) => {
+  try {
+    //console.log('POST "/login" called.');
+    const clientId = req.body.userId;
+    const clientPassword = req.body.password;
+    
+    const result = await pool.query(`
+      SELECT * FROM users
+      WHERE user_id = $1 AND password = $2;
+    `, [clientId, clientPassword]);
+
+    if (result.rows.length > 0) {
+      const user = result.rows[0];
+      res.json(user);
+    } else {
+      res.json('Incorrect username/password');
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}...`);
 });
