@@ -23,7 +23,7 @@ const Login = () => {
 
   const handleSubmit = async () => {
     let body = {
-      userId: parseInt(userDetails.id),
+      user_id: parseInt(userDetails.id),
       password: userDetails.password
     };
 
@@ -35,8 +35,6 @@ const Login = () => {
       body: JSON.stringify(body)
     }).then(response => response.json())
     .catch(error => console.error(error.message));
-
-    console.log(`Result: ${result}`)
 
     if (result.success) {
       router.push('/inventory');

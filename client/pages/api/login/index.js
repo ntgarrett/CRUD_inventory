@@ -15,7 +15,7 @@ async function loginRoute(req, res) {
 
     if (Object.keys(authenticatedUser).length) {
       req.session.user = {
-        id: authenticatedUser.userId,
+        id: authenticatedUser.user_id,
         admin: authenticatedUser.administrator
       };
 
@@ -25,6 +25,6 @@ async function loginRoute(req, res) {
       res.json({ success: false, message: 'Incorrect username and/or password' });
     }
   } else {
-    res.send('Incorrect username and/or password');
+    res.send({ success: false, message: 'Incorrect username and/or password' });
   }
 }
