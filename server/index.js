@@ -1,9 +1,12 @@
 const express = require('express');
+const morgan = require('morgan');
 const cors = require('cors');
 const pool = require('./db/db');
 
 const app = express();
+
 app.use(express.json());
+app.use(morgan('dev'));
 app.use(cors());
 const PORT = 3306;
 
@@ -14,7 +17,6 @@ app.get('/', async (req, res) => {
       SELECT * FROM product;
     `);
 
-    console.log('GET "/" - called.');
     res.json(inventory.rows);
   } catch (error) {
     res.send(error.message);
@@ -32,7 +34,6 @@ app.get('/:id', async (req, res) => {
       [id]
     );
     
-    console.log('GET "/:id" - called.');
     res.json(product.rows[0]);
   } catch (error) {
     res.json(error.message);
@@ -51,7 +52,6 @@ app.post('/addproduct', async (req, res) => {
       [name, description, category, count]
     );
     
-    console.log('POST "/addproduct" - called.');
     res.json(product.rows[0]);
   } catch (error) {
     res.send(error.message);
@@ -73,7 +73,6 @@ app.put('/:id', async (req,res) => {
       [name, description, category, count, id]
     ).then(response => { return response.rows[0] });
     
-    console.log('PUT "/:id" - called.');
     res.json(updatedProduct);
   } catch (error) {
     res.json(error.message);
@@ -92,7 +91,6 @@ app.delete('/:id', async (req, res) => {
       [id]
     ).then(response => { return response.rows[0] });
     
-    console.log('DELETE "/:id" - called.');
     res.json(deletedProduct);
   } catch (error) {
     res.json(error.message);
@@ -102,8 +100,7 @@ app.delete('/:id', async (req, res) => {
 // Login user
 app.post('/login', async (req, res) => {
   try {
-    //console.log('POST "/login" called.');
-    const clientId = req.body.userId;
+    const clientId = req.body.user_id;
     const clientPassword = req.body.password;
     
     const result = await pool.query(`
