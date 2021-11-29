@@ -14,13 +14,16 @@ async function loginRoute(req, res) {
     }).then(response => response.json());
 
     if (Object.keys(authenticatedUser).length) {
-      req.session.user = {
-        id: authenticatedUser.user_id,
-        admin: authenticatedUser.administrator
+      const user = { 
+        isLoggedIn: true,
+        userId: authenticatedUser.user.user_id,
+        isAdmin: authenticatedUser.user.administrator
       };
 
+      req.session.user = user;
       await req.session.save();
-      res.json({ success: true, message: 'Logged in' });
+      
+      res.json({ success: true, user: user });
     } else {
       res.json({ success: false, message: 'Incorrect username and/or password' });
     }
