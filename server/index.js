@@ -54,7 +54,7 @@ app.post('/addproduct', async (req, res) => {
     
     res.json(product.rows[0]);
   } catch (error) {
-    res.send(error.message);
+    res.json(error.message);
   }
 });
 
@@ -104,18 +104,26 @@ app.post('/login', async (req, res) => {
     const clientPassword = req.body.password;
     
     const result = await pool.query(`
-      SELECT * FROM users
+      SELECT json_build_object(
+        'user_id', user_id, 
+        'administrator', administrator
+      )
+      AS user
+      FROM users
       WHERE user_id = $1 AND password = $2;
-    `, [clientId, clientPassword]);
-
+      `, 
+      [clientId, clientPassword]
+    );
+  
     if (result.rows.length > 0) {
-      const user = result.rows[0];
-      res.json(user);
+      const user = result.rows[0].user;
+      const message = { success: true, user: user}
+      res.json(message);
     } else {
       res.json('Incorrect username/password');
     }
   } catch (error) {
-    console.error(error.message);
+    res.json(error.message);
   }
 });
 
