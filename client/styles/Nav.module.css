@@ -1,11 +1,7 @@
 .nav {
   height: 50px;
-  padding: 0 10px 0 10px;
   background: #212529;
   color: #fff;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
   font-size: 14px;
 }
 
@@ -16,29 +12,51 @@
   list-style: none;
   padding-left: 0;
   height: 100%;
+  margin: 0;
 }
 
-.nav ul li {
+.nav ul li:not(.loginbtn) {
   display: flex;
-  justify-content: center;
-  align-items: center;
   height: 70%;
+  align-items: center;
   border-right: 1px solid white;
 }
 
 .nav ul li a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 0 2rem 0 2rem;
+}
+
+.loginbtn {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem 0 2rem;
+  height: 70%;
+  margin-left: auto;
+}
+
+.dropdown {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50px;
+}
+
+.dropdownitem {
+  background: #212529;
+  padding: 1em 1.5em 1em 1.5em;
+  transition: .3s;
+}
+
+.dropdownitem:hover {
+  background-color: #595c5f;
 }
 
 @media (max-width: 600px) {
   .nav {
     font-size: 12px;
   }
-  .nav ul li a {
-    font-size: 0.8em;
+  .nav ul li a,
+  .loginbtn {
     padding: 0 1rem 0 1rem;
   }
 }
