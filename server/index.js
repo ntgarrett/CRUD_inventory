@@ -19,7 +19,36 @@ app.get('/', async (req, res) => {
 
     res.json(inventory.rows);
   } catch (error) {
-    res.send(error.message);
+    res.json(error.message);
+  }
+});
+
+// Get user details
+app.get('/user/:id', async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    const result = await pool.query(`
+      SELECT json_build_object(
+        'first_name', first_name,
+        'last_name', last_name, 
+        'birth_date', birth_date,
+        'hire_date', hire_date
+      ) 
+      AS user
+      FROM users
+      WHERE user_id = $1;
+      `, 
+      [userId]
+    );
+
+    if (result.rows.length) {
+      res.json(result.rows[0]);
+    } else {
+      res.send('User ID does not exist');
+    }
+  } catch (error) {
+    res.json(error.message);
   }
 });
 
