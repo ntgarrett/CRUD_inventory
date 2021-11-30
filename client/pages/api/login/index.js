@@ -13,11 +13,11 @@ async function loginRoute(req, res) {
       body: JSON.stringify(req.body)
     }).then(response => response.json());
 
-    if (Object.keys(authenticatedUser).length) {
+    if (Object.keys(authenticatedUser.user).length) {
       const user = { 
         isLoggedIn: true,
         userId: authenticatedUser.user.user_id,
-        isAdmin: authenticatedUser.user.administrator
+        isAdmin: authenticatedUser.user.administrator,
       };
 
       req.session.user = user;
