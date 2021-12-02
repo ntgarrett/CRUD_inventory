@@ -28,7 +28,7 @@ const ProductItem = ({ product }) => {
       method: 'DELETE'
     }).then(response => {
       response.json();
-      router.push('/');
+      router.push('/inventory');
     })
     .catch(error => console.log(error));
   };
