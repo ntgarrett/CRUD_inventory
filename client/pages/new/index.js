@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { withSessionSsr } from '../../lib/withSession';
 import { server } from "../../config";
 import productStyles from "../../styles/Product.module.css";
 
@@ -109,17 +110,6 @@ const AddProduct = () => {
         </p>
       </div>
       <div className={productStyles.btncontainer}>
-        <button 
-          className={productStyles.btn}
-          disabled={canSubmit()}
-          onClick={() => { 
-            if (window.confirm('Add new product to inventory?')) {
-              handleSubmit();
-            }
-          }}
-        >
-          Add Product
-        </button>
         <button
           className={productStyles.btn}
           onClick={() => {
@@ -134,9 +124,41 @@ const AddProduct = () => {
         >
           Cancel
         </button>
+        <button 
+          className={productStyles.btn}
+          disabled={canSubmit()}
+          onClick={() => { 
+            if (window.confirm('Add new product to inventory?')) {
+              handleSubmit();
+            }
+          }}
+        >
+          Add Product
+        </button>
       </div>
     </div>
   );
 };
+
+export const getServerSideProps = withSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session.user;
+
+    if (!user) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: '/401'
+        }
+      }
+    } else {
+      return {
+        props: {
+          user: req.session.user,
+        }
+      }
+    }
+  }
+);
 
 export default AddProduct;

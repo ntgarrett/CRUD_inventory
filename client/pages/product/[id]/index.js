@@ -1,3 +1,4 @@
+import { withSessionSsr } from "../../../lib/withSession";
 import { server } from "../../../config";
 import ProductItem from "../../../components/ProductItem";
 
@@ -9,28 +10,32 @@ const product = ({ product }) => {
   );
 };
 
-export const getStaticProps = async (context) => {
-  const res = await fetch(`${server}/api/${context.params.id}`);
-  const product = await res.json();
+export const getServerSideProps = withSessionSsr(   
+  async function getServerSideProps({ req }) {
+    const user = req.session.user;
+    
+    if (!user) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: '/401'
+        }
+      }
+    } else {
+      const param = req.url.match(/[^\/]*$/);
+      const id = parseInt(param[0]);
 
-  return {
-    props: {
-      product,
-    },
-  };
-};
-
-export const getStaticPaths = async () => {
-  const res = await fetch(`${server}/api`);
-  const inventory = await res.json();
-
-  const ids = inventory.map((product) => product.id);
-  const paths = ids.map((id) => ({ params: { id: id.toString() } }));
-
-  return {
-    paths,
-    fallback: false
-  };
-};
+      const res = await fetch(`${server}/api/${id}`);
+      const product = await res.json();
+      
+      return {
+        props: {
+          user: req.session.user,
+          product,
+        }
+      }
+    }
+  }
+);
 
 export default product;
