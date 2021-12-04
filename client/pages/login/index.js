@@ -8,6 +8,8 @@ const Login = () => {
     id: '',
     password: ''
   });
+  
+  const [failedLoginPrompt, setFailedLoginPrompt] = useState(false);
 
   const router = useRouter();
 
@@ -35,36 +37,47 @@ const Login = () => {
       body: JSON.stringify(body)
     }).then(response => response.json())
     .catch(error => console.error(error.message));
-
-    if (result.success) {
+    
+    if (result.success === true) {
       router.push('/inventory');
+    } else {
+      setFailedLoginPrompt(true);
     }
   };
 
   return (
-    <div className={loginStyles.container}>
-      <span>Employee ID</span>
-      <input
-        name="id"
-        type="text"
-        onChange={handleChange}
-        onInput={(e) => {
-          e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
-        }}
-      />
-      <span>Password</span>
-      <input
-        name="password"
-        type="password"
-        onChange={handleChange}
-      />
-      <button
-        className={loginStyles.button}
-        onClick={handleSubmit}
-      >
-        Login
-      </button>
-    </div>
+    <>
+      <div className={loginStyles.incorrectpopup}>
+        <p
+          style={{ opacity: failedLoginPrompt ? 100 : 0 }}
+        >
+          Incorrect username and/or password.
+        </p>
+      </div>
+      <div className={loginStyles.container}>
+        <span>Employee ID</span>
+        <input
+          name="id"
+          type="text"
+          onChange={handleChange}
+          onInput={(e) => {
+            e.target.value = e.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')
+          }}
+        />
+        <span>Password</span>
+        <input
+          name="password"
+          type="password"
+          onChange={handleChange}
+        />
+        <button
+          className={loginStyles.button}
+          onClick={handleSubmit}
+        >
+          Login
+        </button>
+      </div>
+    </>
   );
 };
 
