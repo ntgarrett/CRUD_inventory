@@ -1,12 +1,36 @@
-
+import { useRouter } from "next/router";
+import dashboardStyles from "../styles/Dashboard.module.css";
 
 const Dashboard = () => {
+  const router = useRouter();
+
   return (
     <>
-      <div>
-        <h1>Dashboard</h1>
-        <h2>Go to Inventory</h2>
-        <h2>Employee Ops</h2>
+      <div className={dashboardStyles.container}>
+        <h2>
+          Dashboard
+        </h2>
+        <button
+          onClick={() => {
+            router.push('/inventory');
+          }}
+        >
+          Inventory
+        </button>
+        <button
+          onClick={() => {
+            router.push('/account');
+          }}
+        >
+          My Account
+        </button>
+        <button
+          onClick={() => {
+            router.push('/employees')
+          }}
+        >
+          Employees
+        </button>
       </div>
     </>
   );

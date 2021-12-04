@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container h2 {
+  padding: .5rem 0 1.2rem 0;
+  color: #023047;
+}
+
+.container button {
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  width: 25%;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  margin: 1.5rem 0 1.5rem 0;
+  background-color: #ffbf69;
+  border: 1px solid #023047;
+  transition: 0.2s ease;
+}
+
+.container button:hover {
+  transform: scale(1.05);
+}
