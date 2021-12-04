@@ -143,13 +143,14 @@ app.post('/login', async (req, res) => {
       `, 
       [clientId, clientPassword]
     );
-  
+
     if (result.rows.length > 0) {
       const user = result.rows[0].user;
       const message = { success: true, user: user}
       res.json(message);
     } else {
-      res.json('Incorrect username/password');
+      const resp = { success: false, message: 'Incorrect username/password' }
+      res.status(401).json(resp);
     }
   } catch (error) {
     res.json(error.message);

@@ -12,8 +12,8 @@ async function loginRoute(req, res) {
       },
       body: JSON.stringify(req.body)
     }).then(response => response.json());
-
-    if (Object.keys(authenticatedUser.user).length) {
+    
+    if (authenticatedUser.success === true) {
       const user = { 
         isLoggedIn: true,
         userId: authenticatedUser.user.user_id,
