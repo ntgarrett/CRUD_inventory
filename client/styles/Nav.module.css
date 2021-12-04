@@ -15,6 +15,10 @@
   margin: 0;
 }
 
+.nav ul li:hover {
+  color: #a5a9ad;
+}
+
 .nav ul li:not(.loginbtn) {
   display: flex;
   height: 70%;
