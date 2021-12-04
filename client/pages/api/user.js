@@ -12,7 +12,7 @@ async function userRoute(req, res) {
 					'Content-Type': 'application/json'
 				}
 			}).then(response => response.json());
-
+			
 			res.json({
 				...req.session.user,
 				firstName: additionalUserData.user.first_name,
@@ -30,4 +30,4 @@ async function userRoute(req, res) {
 	} catch (error) {
 		res.json(error.message);
 	}
-} 
+};
