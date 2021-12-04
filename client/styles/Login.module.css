@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 5em;
+  margin-top: 2em;
 }
 
 .container span {
@@ -20,4 +20,22 @@
   margin-top: 5em;
   padding: .75em 2em .75em 2em;
   border-radius: 25px;
+  background-color: #ffbf69;
+}
+
+.incorrectpopup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3em;
+}
+
+.incorrectpopup  p {
+  color: red;
+}
+
+@media (max-width: 600px) {
+  .container input {
+    width: 90%;
+  }
 }
