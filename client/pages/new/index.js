@@ -53,9 +53,9 @@ const AddProduct = () => {
 
   return (
     <div className={`${productStyles.container} ${productStyles.newform}`}>
-      <h4 className={productStyles.infolabel}>
+      <h2 className={productStyles.infolabel}>
         Enter New Product Details
-      </h4>
+      </h2>
       <div className={productStyles.name}>
         <label className={productStyles.fieldlabel}>Name</label>
         <p>
