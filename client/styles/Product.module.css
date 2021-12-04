@@ -79,6 +79,7 @@
 
 .btn:enabled {
   background-color: #ffbf69;
+  border: 1px solid #023047;
 }
 
 .btn:hover:enabled {
@@ -121,6 +122,7 @@
 .infolabel {
   width: 100%;
   text-align: center;
+  color: #023047;
   margin: 0 0 2rem 0;
 }
 
