@@ -52,6 +52,31 @@ app.get('/user/:id', async (req, res) => {
   }
 });
 
+// Change user password
+app.put('/user/password', async (req, res) => {
+  try {
+    const id = req.body.id;
+    const oldPassword = req.body.oldPassword;
+    const newPassword = req.body.newPassword;
+
+    const result = await pool.query(`
+      UPDATE users
+      SET password = $3
+      WHERE user_id = $1 AND password = $2; 
+      `, 
+      [id, oldPassword, newPassword]
+    );
+
+    if (result.rowCount) {
+      res.json({ success: true, userId: id, message: "Password changed" });
+    } else {
+      res.json({ success: false, message: "Incorrect username/password details" });
+    }
+  } catch (error) {
+    res.json({ success: false, error: error.message });
+  }
+});
+
 // Get a product
 app.get('/:id', async (req, res) => {
   try {
