@@ -39,7 +39,7 @@ const Login = () => {
     .catch(error => console.error(error.message));
     
     if (result.success === true) {
-      router.push('/inventory');
+      router.push('/');
     } else {
       setFailedLoginPrompt(true);
     }
