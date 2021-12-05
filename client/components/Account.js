@@ -1,7 +1,10 @@
+import { useRouter } from "next/router";
 import accountStyles from "../styles/Account.module.css";
 
 const Account = ({ user, mutateUser }) => {
   const dateFormat = { year: 'numeric', month: '2-digit', day: '2-digit' };
+
+  const router = useRouter();
 
   return (
     <>
@@ -34,7 +37,9 @@ const Account = ({ user, mutateUser }) => {
         <div className={accountStyles.btncontainer}>
           <button
             className={accountStyles.btn}
-            
+            onClick={() => {
+              router.push('/account/password');
+            }}
           >
             Change Password
           </button>
