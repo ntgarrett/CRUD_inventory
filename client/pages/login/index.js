@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { withSessionSsr } from "../../lib/withSession";
 import { server } from "../../config";
 import loginStyles from "../../styles/Login.module.css";
 
@@ -80,5 +81,26 @@ const Login = () => {
     </>
   );
 };
+
+export const getServerSideProps = withSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session.user;
+
+    if (user) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: '/'
+        }
+      }
+    } else {
+      return {
+        props: {
+          isLoggedIn: false
+        }
+      }
+    }
+  }
+);
 
 export default Login;
