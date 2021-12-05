@@ -21,6 +21,12 @@
   padding: .75em 2em .75em 2em;
   border-radius: 25px;
   background-color: #ffbf69;
+  border: 1px solid #023047;
+  transition: 0.2s ease;
+}
+
+.button:hover {
+  transform: scale(1.1);
 }
 
 .incorrectpopup {
