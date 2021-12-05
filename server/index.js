@@ -52,6 +52,31 @@ app.get('/user/:id', async (req, res) => {
   }
 });
 
+// Verify user's password
+app.post('/user/check', async (req, res) => {
+  try {
+    const id = req.body.userId;
+    const password = req.body.password;
+
+    const result = await pool.query(`
+      SELECT (user_id, administrator)
+      FROM users
+      WHERE user_id = $1 AND password = $2;
+    `,
+    [id, password])
+    .then(response => response.rowCount);
+
+    if (result) {
+      res.json({ success: true });
+    } else {
+      res.json({ success: false });
+    }
+    
+  } catch (error) {
+    res.json(error.message);
+  }
+});
+
 // Change user password
 app.put('/user/password', async (req, res) => {
   try {
