@@ -27,15 +27,12 @@ app.get('/', async (req, res) => {
 app.get('/users', async (req, res) => {
   try {
     const allUsers = await pool.query(`
-      SELECT json_build_object(
-        'user_id', user_id, 
-        'first_name', first_name,
-        'last_name', last_name,
-        'birth_date', birth_date,
-        'hire_date', hire_date,
-        'administrator', administrator
-      )
-      AS employee
+      SELECT 
+      CONCAT(last_name, '\, ', first_name) AS name,
+      user_id, 
+      birth_date,
+      hire_date,
+      administrator
       FROM users;
     `);
 
