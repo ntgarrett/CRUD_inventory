@@ -4,7 +4,9 @@ import { useTable, useSortBy, useGlobalFilter, usePagination } from "react-table
 import { GlobalFilter } from "./GlobalFilter";
 import tableStyles from "../styles/ProductList.module.css";
 
-const Table = ({ columns, data }) => {
+const defaultPropGetter = () => ({})
+
+const Table = ({ columns, data, getCellProps = defaultPropGetter }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -45,7 +47,12 @@ const Table = ({ columns, data }) => {
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                <th {...column.getHeaderProps(column.getSortByToggleProps({
+                  style: { 
+                    width: column.width,
+                    maxWidth: column.maxWidth, 
+                  },
+                }))}>
                   {column.render('Header')}
                   <span>
                     {column.isSorted
@@ -67,7 +74,20 @@ const Table = ({ columns, data }) => {
                 <Link key={row.original.id} href={`/product/${row.original.id}`}>
                   <tr {...row.getRowProps()}>
                     {row.cells.map(cell => {
-                      return (<td {...cell.getCellProps()}>{cell.render('Cell')}</td>)
+                      return (
+                        <td {...cell.getCellProps([
+                          {
+                            style: {
+                              width: cell.column.width,
+                              maxWidth: cell.column.maxWidth,
+                            },
+                          },
+                          getCellProps(cell)
+                      ])}
+                        >
+                          {cell.render('Cell')}
+                      </td>
+                      )
                     })}
                   </tr>
                 </Link>
@@ -102,18 +122,26 @@ const ProductList = ({ inventory }) => {
         {
           Header: 'Name',
           accessor: 'name',
+          width: 80,
+          maxWidth: 80,
         },
         {
           Header: 'Description',
           accessor: 'description',
+          width: 175,
+          maxWidth: 175,
         },
         {
           Header: 'Category',
           accessor: 'category',
+          width: 60,
+          maxWidth: 60,
         },
         {
           Header: 'In Stock',
           accessor: 'count',
+          width: 40,
+          maxWidth: 40,
         },
       ],
     },
@@ -122,7 +150,16 @@ const ProductList = ({ inventory }) => {
   return (
     <>
       <div className={tableStyles.table}>
-        <Table columns={columns} data={inventory} />
+        <Table 
+          columns={columns} 
+          data={inventory} 
+          getCellProps={cellInfo => ({
+            style: {
+              backgroundColor: `hsl(${120 * ((120 - cellInfo.value) / 120) * -1 +
+                120}, 100%, 67%)`,
+            },
+          })}
+        />
       </div>
     </>
   );
