@@ -23,6 +23,28 @@ app.get('/', async (req, res) => {
   }
 });
 
+// Get all users
+app.get('/users', async (req, res) => {
+  try {
+    const allUsers = await pool.query(`
+      SELECT json_build_object(
+        'user_id', user_id, 
+        'first_name', first_name,
+        'last_name', last_name,
+        'birth_date', birth_date,
+        'hire_date', hire_date,
+        'administrator', administrator
+      )
+      AS employee
+      FROM users;
+    `);
+    //console.log(allUsers.rows)
+    res.json({ success: true, employees: allUsers.rows})
+  } catch (error) {
+    res.json({ success: false, error: error.message });
+  }
+});
+
 // Get user details
 app.get('/user/:id', async (req, res) => {
   try {
