@@ -42,6 +42,31 @@ app.get('/users', async (req, res) => {
   }
 });
 
+// Add a new user
+app.post('/addemployee', async (req, res) => {
+  try {
+    const id = req.body.user_id;
+    const password = req.body.password;
+    const fName = req.body.first_name;
+    const lName = req.body.last_name;
+    const birthDate = req.body.birth_date;
+    const hireDate = req.body.hire_date;
+    const isAdmin = req.body.administrator;
+
+    const newEmployee = await pool.query(`
+      INSERT INTO users (user_id, password, first_name, last_name, birth_date, hire_date, administrator)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
+      RETURNING *;
+      `,
+      [id, password, fName, lName, birthDate, hireDate, isAdmin]
+    );
+
+    res.json({ success: true, employee: newEmployee.rows[0] });
+  } catch (error) {
+    res.json({ success: false, error: error.message })
+  }
+});
+
 // Get user details
 app.get('/user/:id', async (req, res) => {
   try {
