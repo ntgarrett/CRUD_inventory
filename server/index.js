@@ -38,7 +38,7 @@ app.get('/users', async (req, res) => {
       AS employee
       FROM users;
     `);
-    //console.log(allUsers.rows)
+
     res.json({ success: true, employees: allUsers.rows})
   } catch (error) {
     res.json({ success: false, error: error.message });
