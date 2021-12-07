@@ -2,10 +2,10 @@ import { withSessionSsr } from "../../lib/withSession";
 import { server } from "../../config";
 import EmployeeList from "../../components/EmployeeList";
 
-const employees = ({ employees }) => {
+const employees = ({ user, employees }) => {
   return (
     <>
-      <EmployeeList employees={employees} />
+      <EmployeeList user={user} employees={employees} />
     </>
   );
 };
