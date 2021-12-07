@@ -57,7 +57,7 @@
 
 @media (max-width: 600px) {
   .nav {
-    font-size: 12px;
+    font-size: 11px;
   }
   .nav ul li a,
   .loginbtn {

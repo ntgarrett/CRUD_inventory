@@ -6,9 +6,9 @@ import useUser from "../lib/useUser";
 import fetchJson from "../lib/fetchJson";
 import navStyles from "../styles/Nav.module.css";
 
-const Nav = (props) => {
+const Nav = () => {
   const { user, mutateUser } = useUser();
-  const router = useRouter();  
+  const router = useRouter();
 
   const LoginButton = () => {
     return (
@@ -18,10 +18,8 @@ const Nav = (props) => {
     );
   };
 
-
   const UserMenuDropDown = () => {
     const [visible, setVisible] = useState(false);
-
     const handleClickAway = () => setVisible(!visible);
 
     return (
@@ -30,13 +28,13 @@ const Nav = (props) => {
           className={navStyles.loginbtn}
           onClick={() => { setVisible(!visible) }}
         >
-          {`${user.firstName} ${user.lastName} \u00a0 ${visible ? String.fromCharCode("9650") : String.fromCharCode("9660")}`}
+          {`${user?.firstName} ${user?.lastName} \u00a0 ${visible ? String.fromCharCode("9650") : String.fromCharCode("9660")}`}
         </p>
         { visible && 
         <ClickAwayListener onClickAway={handleClickAway}>
           <div className={navStyles.dropdown} onBlur={() => setVisible(false)}>
             <div className={navStyles.dropdownitem}>
-              <Link href='/'>My Account</Link>
+              <Link href='/account'>My Account</Link>
             </div>
             <div className={navStyles.dropdownitem}>
               <a 
@@ -73,30 +71,12 @@ const Nav = (props) => {
           <li>
             <Link href='/new'>New Product</Link>
           </li>
-          { user?.isLoggedIn ? <UserMenuDropDown /> : <LoginButton /> }
+          { user?.isLoggedIn === true && <UserMenuDropDown />}
+          { user?.isLoggedIn === false && <LoginButton /> }
         </ul>
       </nav>
     </>
   );
 };
-
-// export const getServerSideProps = async (req) => {
-//   const user = req.session.user;
-
-//   if (user) {
-//     return {
-//       props: {
-//         isLoggedIn: true,
-//         user: req.session.user,
-//       }
-//     }
-//   } else {
-//     return {
-//       props: {
-//         isLoggedIn: false,
-//       }
-//     }
-//   }
-// };
 
 export default Nav;
