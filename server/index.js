@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 const pool = require('./db/db');
 
 const app = express();
@@ -53,12 +54,15 @@ app.post('/addemployee', async (req, res) => {
     const hireDate = req.body.hire_date;
     const isAdmin = req.body.administrator;
 
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const newEmployee = await pool.query(`
       INSERT INTO users (user_id, password, first_name, last_name, birth_date, hire_date, administrator)
       VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING *;
       `,
-      [id, password, fName, lName, birthDate, hireDate, isAdmin]
+      [id, hashedPassword, fName, lName, birthDate, hireDate, isAdmin]
     );
 
     res.json({ success: true, employee: newEmployee.rows[0] });
@@ -102,20 +106,23 @@ app.post('/user/check', async (req, res) => {
     const id = req.body.userId;
     const password = req.body.password;
 
-    const result = await pool.query(`
-      SELECT (user_id, administrator)
+    const fetchedUser = await pool.query(`
+      SELECT user_id, password
       FROM users
-      WHERE user_id = $1 AND password = $2;
-    `,
-    [id, password])
-    .then(response => response.rowCount);
+      WHERE user_id = $1;
+      `,
+      [id]
+    );
 
-    if (result) {
-      res.json({ success: true });
+    if (fetchedUser.rowCount) {
+      if (await bcrypt.compare(password, fetchedUser.rows[0].password)) {
+        res.json({ success: true });
+      } else {
+        res.json({ success: false })
+      }
     } else {
       res.json({ success: false });
     }
-    
   } catch (error) {
     res.json(error.message);
   }
@@ -128,18 +135,33 @@ app.put('/user/password', async (req, res) => {
     const oldPassword = req.body.oldPassword;
     const newPassword = req.body.newPassword;
 
-    const result = await pool.query(`
-      UPDATE users
-      SET password = $3
-      WHERE user_id = $1 AND password = $2; 
-      `, 
-      [id, oldPassword, newPassword]
+    const fetchedUser = await pool.query(`
+      SELECT user_id, password
+      FROM users
+      WHERE user_id = $1;
+      `,
+      [id]
     );
 
-    if (result.rowCount) {
-      res.json({ success: true, userId: id, message: "Password changed" });
+    if (fetchedUser.rowCount) {
+      if (await bcrypt.compare(oldPassword, fetchedUser.rows[0].password)) {
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+        const result = await pool.query(`
+          UPDATE users
+          SET password = $2
+          WHERE user_id = $1; 
+          `, 
+          [id, hashedPassword]
+        );
+
+        res.json({ success: true });
+      } else {
+        res.json({ success: false, message: "Authentication failed."})
+      }
     } else {
-      res.json({ success: false, message: "Incorrect username/password details" });
+      res.json({ success: false, message: "Authentication failed."})
     }
   } catch (error) {
     res.json({ success: false, error: error.message });
@@ -226,25 +248,30 @@ app.post('/login', async (req, res) => {
     const clientId = req.body.user_id;
     const clientPassword = req.body.password;
     
-    const result = await pool.query(`
-      SELECT json_build_object(
-        'user_id', user_id, 
-        'administrator', administrator
-      )
-      AS user
+    const fetchedUser = await pool.query(`
+      SELECT user_id, password, administrator
       FROM users
-      WHERE user_id = $1 AND password = $2;
-      `, 
-      [clientId, clientPassword]
+      WHERE user_id = $1;
+      `,
+      [clientId]
     );
 
-    if (result.rows.length > 0) {
-      const user = result.rows[0].user;
-      const message = { success: true, user: user}
-      res.json(message);
+    if (fetchedUser.rowCount) {
+      if (await bcrypt.compare(clientPassword, fetchedUser.rows[0].password)) {
+        const userObject = {
+          user_id: fetchedUser.rows[0].user_id,
+          administrator: fetchedUser.rows[0].administrator
+        };
+
+        const message = { success: true, user: userObject}
+        res.json(message);
+      } else {
+        const message = { success: false, message: 'Authentication failed.' }
+        res.json(message);
+      }
     } else {
-      const resp = { success: false, message: 'Incorrect username/password' }
-      res.status(401).json(resp);
+      const message = { success: false, message: 'Authentication failed.' }
+      res.json(message);
     }
   } catch (error) {
     res.json(error.message);
