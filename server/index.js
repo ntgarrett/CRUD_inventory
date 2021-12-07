@@ -168,6 +168,28 @@ app.put('/user/password', async (req, res) => {
   }
 });
 
+// Delete a user
+app.delete('/user/delete', async (req, res) => {
+  try {
+    const id = req.body.userId;
+
+    const deletedUser = await pool.query(`
+      DELETE FROM users
+      WHERE user_id = $1;
+    `,
+    [id]
+    ).then(response => response.rowCount);
+
+    if (deletedUser) {
+      res.json({ success: true, message: `User with ID ${id} has been deleted.`});
+    } else {
+      res.json({ success: false });
+    }
+  } catch (error) {
+    res.json({ success: false, error: error.message})
+  }
+});
+
 // Get a product
 app.get('/:id', async (req, res) => {
   try {
