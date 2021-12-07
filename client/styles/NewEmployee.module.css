@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  width: 30%;
+  margin: 0 auto 0 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.container h2 {
+  padding: .5rem 0 1.2rem 0;
+  color: #023047;
+}
+
+.formfield {
+  width: 100%;
+}
+
+.formfield input {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 0 0 1rem 0;
+  background-color: #f8f9fa;
+  width: 100%;
+}
+
+.formfield input:hover:not(.adminfield) {
+  border-color: #ffbf69;
+  box-shadow: 0 0 .2rem #ffb703;
+}
+
+.formfield label:not(.adminfield) {
+  color: #023047;
+  font-size: 0.9em;
+  margin: 0 0 0 5px;
+}
+
+.adminfield {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: .5em;
+}
+
+.adminfield label {
+  color: #023047;
+  font-size: 0.9em;
+  margin-left: 3em;
+}
+
+.checkbox {
+  width: 1.75em;
+  height: 1.75em;
+  margin-left: auto;
+  margin-right: 3em;
+}
+
+.btncontainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  margin: 3rem auto 3rem auto;
+}
+
+.btncontainer button {
+  padding: .75rem 1.25rem;
+  box-shadow: 2px 2px 3px #141414;
+  border-radius: 20px;
+  transition: 0.2s ease;
+}
+
+.btncontainer button:enabled {
+  background-color: #ffbf69;
+  border: 1px solid #023047;
+}
+
+.btncontainer button:hover:enabled {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.btntext:enabled {
+  font-size: 1.2em;
+  color: #141414;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+  }
+}
