@@ -11,7 +11,7 @@ const Nav = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!user.isLoggedIn) {
+    if (!user?.isLoggedIn) {
       console.log('called')
       mutate();
     }
