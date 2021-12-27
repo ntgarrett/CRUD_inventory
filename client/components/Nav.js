@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import ClickAwayListener from "react-click-away-listener";
 import Link from "next/link";
@@ -7,8 +7,15 @@ import fetchJson from "../lib/fetchJson";
 import navStyles from "../styles/Nav.module.css";
 
 const Nav = () => {
-  const { user, mutateUser } = useUser();
+  const { user, mutate } = useUser();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!user.isLoggedIn) {
+      console.log('called')
+      mutate();
+    }
+  }, [user, router]);
 
   const LoginButton = () => {
     return (
@@ -17,6 +24,14 @@ const Nav = () => {
       </li>
     );
   };
+
+  function determineUserStatusElement() {
+    if (user?.isLoggedIn) {
+      return <UserMenuDropDown />
+    } else {
+      return <LoginButton />;
+    }
+  }
 
   const UserMenuDropDown = () => {
     const [visible, setVisible] = useState(false);
@@ -41,7 +56,7 @@ const Nav = () => {
                 href='/api/logout'
                 onClick={async (e) => {
                   e.preventDefault();
-                  mutateUser(
+                  mutate(
                     await fetchJson('/api/logout', { method: 'POST' }),
                     false,
                   );
@@ -71,8 +86,7 @@ const Nav = () => {
           <li>
             <Link href='/new'>New Product</Link>
           </li>
-          { user?.isLoggedIn === true && <UserMenuDropDown />}
-          { user?.isLoggedIn === false && <LoginButton /> }
+          { determineUserStatusElement() }
         </ul>
       </nav>
     </>
