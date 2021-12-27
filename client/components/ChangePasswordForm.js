@@ -77,7 +77,7 @@ const ChangePasswordForm = ({ user }) => {
     <>
       { failedCredentials && <div className={passwordStyles.incorrectpopup}>
         <p>
-          Incorrect password or new passwords don't match.
+          Incorrect password or new passwords do not match.
         </p>
       </div>}
       <div className={passwordStyles.container}>
