@@ -1,8 +1,11 @@
 import { useRouter } from "next/router";
+import useUser from "../lib/useUser";
 import accountStyles from "../styles/Account.module.css";
 
-const Account = ({ user, mutateUser }) => {
-  const dateFormat = { year: 'numeric', month: '2-digit', day: '2-digit' };
+const dateFormat = { year: 'numeric', month: '2-digit', day: '2-digit' };
+
+const Account = () => {
+  const { user, mutate } = useUser();
 
   const router = useRouter();
 

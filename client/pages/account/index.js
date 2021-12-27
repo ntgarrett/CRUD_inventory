@@ -1,13 +1,10 @@
 import { withSessionSsr } from "../../lib/withSession";
-import useUser from "../../lib/useUser";
 import Account from "../../components/Account";
 
-const account = () => {
-  const { user, mutateUser } = useUser();
-  
+const account = () => {  
   return (
     <>
-      <Account user={user} />
+      <Account />
     </>
   );
 }
