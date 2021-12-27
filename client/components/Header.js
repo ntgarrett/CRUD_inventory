@@ -14,7 +14,7 @@ const Header = () => {
             height={44}
           />
           <h1 className={headerStyles.title}>
-            John Doe's Art Supplies
+            John Doe&apos;s Art Supplies
           </h1>
         </div>
         <p className={headerStyles.description}>
