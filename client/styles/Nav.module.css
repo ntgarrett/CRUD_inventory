@@ -53,6 +53,7 @@
 
 .dropdownitem:hover {
   background-color: #595c5f;
+  cursor: pointer;
 }
 
 @media (max-width: 600px) {

@@ -15,7 +15,7 @@ const Nav = () => {
       console.log('called')
       mutate();
     }
-  }, [user, router]);
+  }, [user, router, mutate]);
 
   const LoginButton = () => {
     return (
@@ -52,8 +52,7 @@ const Nav = () => {
               <Link href='/account'>My Account</Link>
             </div>
             <div className={navStyles.dropdownitem}>
-              <a 
-                href='/api/logout'
+              <div
                 onClick={async (e) => {
                   e.preventDefault();
                   mutate(
@@ -64,7 +63,7 @@ const Nav = () => {
                 }}
               >
                 Logout
-              </a>
+              </div>
             </div>
           </div>
           </ClickAwayListener>
