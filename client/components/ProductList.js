@@ -44,10 +44,10 @@ const Table = ({ columns, data, getCellProps = defaultPropGetter }) => {
       <br/>
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps({
+          {headerGroups.map((headerGroup, i) => (
+            <tr key={i} {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column, i) => (
+                <th key={i} {...column.getHeaderProps(column.getSortByToggleProps({
                   style: { 
                     width: column.width,
                     maxWidth: column.maxWidth, 
@@ -71,11 +71,11 @@ const Table = ({ columns, data, getCellProps = defaultPropGetter }) => {
             (row, i) => {
               prepareRow(row);
               return (
-                <Link key={row.original.id} href={`/product/${row.original.id}`}>
+                <Link key={row.original.id} href={`/product/${row.original.id}`} passHref>
                   <tr {...row.getRowProps()}>
-                    {row.cells.map(cell => {
+                    {row.cells.map((cell, i) => {
                       return (
-                        <td {...cell.getCellProps([
+                        <td key={i} {...cell.getCellProps([
                           {
                             style: {
                               width: cell.column.width,

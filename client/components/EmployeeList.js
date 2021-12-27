@@ -35,10 +35,10 @@ const EmployeeTable = ({ columns, data, selectedUser, setSelectedUser }) => {
       <br/>
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps({
+          {headerGroups.map((headerGroup, i) => (
+            <tr key={i} {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column, i) => (
+                <th key={i} {...column.getHeaderProps({
                   style: { 
                     minWidth: column.minWidth, 
                     width: column.width 
@@ -55,7 +55,7 @@ const EmployeeTable = ({ columns, data, selectedUser, setSelectedUser }) => {
             (row, i) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps({
+                <tr key={i} {...row.getRowProps({
                   onClick: () => {
                     if (row.original.user_id == selectedUser.id) {
                       setSelectedUser({
@@ -70,13 +70,15 @@ const EmployeeTable = ({ columns, data, selectedUser, setSelectedUser }) => {
                     }
                   }
                 })}>
-                  {row.cells.map(cell => {
-                    return (<td {...cell.getCellProps({
-                      style: {
-                        minWidth: cell.column.minWidth,
-                        width: cell.column.width,
-                      },
-                    })}
+                  {row.cells.map((cell, i) => {
+                    return (
+                      <td key={i} {...cell.getCellProps({
+                        style: {
+                          minWidth: cell.column.minWidth,
+                          width: cell.column.width,
+                        }}
+                      )
+                    }
                   >
                     {cell.render('Cell')}
                   </td>
